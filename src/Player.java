@@ -1,4 +1,4 @@
-import weapons.Weapon;
+import weapons.*;
 
 class Player {
     // Указываем тип данных Weapon, который будет храниться в "слотах игрока" 
@@ -6,10 +6,12 @@ class Player {
 
     public Player() {
         // Снаряжаем нашего игрока
-        weaponSlots = new Weapon[] {
-                // TODO заполнить слоты оружием
-                // new BigGun(),
-                // new WaterPistol()
+        weaponSlots = new Weapon[]{
+                new Cane("Монтировка Гордона Ф."),
+                new Pistol("Пистолет Макарова"),
+                new Akm47("Автомат Калашникова"),
+                new Riffle("Снайперская винтовка Драгунова"),
+                new Bfg("Финальная пушка Дум-гая")
         };
     }
 
@@ -19,13 +21,21 @@ class Player {
     }
 
     public void shotWithWeapon(int slot) {
-        // TODO проверить на выход за границы
-        // если значение slot некорректно, то
-        // выйти из метода написав об этом в консоль
+        // проверяем введенный номер оружия
+        if (slot <= 0 || slot > getSlotsCount()) {
+            System.out.println("\n!!!Нет такого слота с оружием!!!\n");
+        } else {
+            // Получаем оружие из выбранного слота
+            Weapon weapon = weaponSlots[slot-1];
+            // Огонь!
+            weapon.shot();
+        }
+    }
 
-        // Получаем оружие из выбранного слота
-        Weapon weapon = weaponSlots[slot];
-        // Огонь!
-        weapon.shot();
+    public void printWeaponSlots() {
+        System.out.println("\nДоступны следующие виды оружия для выстрела:");
+        for (int i = 0; i < weaponSlots.length; i++) {
+            System.out.println((i + 1) + " ." + weaponSlots[i]);
+        }
     }
 }
