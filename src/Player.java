@@ -1,3 +1,5 @@
+import weapons.Weapon;
+
 class Player {
     // Указываем тип данных Weapon, который будет храниться в "слотах игрока" 
     private Weapon[] weaponSlots;
